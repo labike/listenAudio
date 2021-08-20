@@ -14,7 +14,7 @@ import {
   HeaderStyleInterpolators,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import {Platform, StyleSheet} from 'react-native';
+import {Platform, StatusBar, StyleSheet} from 'react-native';
 
 import Detail from '@/pages/Detail';
 import BottomTabs from './BottomTabs';
@@ -42,6 +42,7 @@ class Navigator extends React.Component {
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
             gestureEnabled: true,
             gestureDirection: 'horizontal',
+            headerStatusBarHeight: StatusBar.currentHeight,
             headerStyle: {
               ...Platform.select({
                 android: {
@@ -51,7 +52,11 @@ class Navigator extends React.Component {
               }),
             },
           }}>
-          <Stack.Screen name="BottomTabs" component={BottomTabs} />
+          <Stack.Screen
+            options={{headerTitle: '首页'}}
+            name="BottomTabs"
+            component={BottomTabs}
+          />
           <Stack.Screen
             options={{headerTitle: '详情页'}}
             name="Detail"

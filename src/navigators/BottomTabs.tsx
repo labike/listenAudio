@@ -9,7 +9,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import Home from '@/pages/Home';
 import Listen from '@/pages/Listen';
 import Found from '@/pages/Found';
 import Account from '@/pages/Account';
@@ -18,9 +17,11 @@ import {
   getFocusedRouteNameFromRoute,
 } from '@react-navigation/native';
 import {RootStackNavigation, RootStackParamsList} from '.';
+import IconFont from '@/assets/confont';
+import HomeTabs from './HomeTabs';
 
 export type BottomTabParamList = {
-  Home: undefined;
+  HomeTabs: undefined;
   Listen: undefined;
   Found: undefined;
   Account: undefined;
@@ -38,8 +39,8 @@ interface IProps {
   route: Route;
 }
 
-function getHeaderTitle(route: Route) {
-  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home';
+function getHeaderTitle(routeName: string) {
+  // const routeName = getFocusedRouteNameFromRoute(route) ?? 'HomeTabs';
   // route.state
   //   ? route.state.routes[route.state.index].name
   //   : route.params?.screen || 'Home';
@@ -59,32 +60,67 @@ function getHeaderTitle(route: Route) {
 }
 
 class BottomTabs extends React.Component<IProps> {
-  componentDidUpdate() {
+  setOptions() {
     const {navigation, route} = this.props;
-    navigation.setOptions({
-      headerTitle: getHeaderTitle(route),
-    });
+    const routeName = getFocusedRouteNameFromRoute(route) ?? 'HomeTabs';
+    if (routeName === 'HomeTabs') {
+      navigation.setOptions({
+        headerTransparent: true,
+        headerTitle: '',
+      });
+    } else {
+      navigation.setOptions({
+        headerTransparent: false,
+        headerTitle: getHeaderTitle(routeName),
+      });
+    }
+  }
+  componentDidMount() {
+    this.setOptions();
+  }
+  componentDidUpdate() {
+    this.setOptions();
   }
   render() {
     return (
       <Tab.Navigator tabBarOptions={{activeTintColor: '#f86442'}}>
         <Tab.Screen
-          options={{tabBarLabel: '首页'}}
-          name="Home"
-          component={Home}
+          options={{
+            tabBarLabel: '首页',
+            tabBarIcon: ({color, size}) => (
+              <IconFont name="iconhome" size={size} color={color} />
+            ),
+          }}
+          name="HomeTabs"
+          component={HomeTabs}
         />
         <Tab.Screen
-          options={{tabBarLabel: '我听'}}
+          options={{
+            tabBarLabel: '我听',
+            tabBarIcon: ({color, size}) => (
+              <IconFont name="iconlisten" size={size} color={color} />
+            ),
+          }}
           name="Listen"
           component={Listen}
         />
         <Tab.Screen
-          options={{tabBarLabel: '发现'}}
+          options={{
+            tabBarLabel: '发现',
+            tabBarIcon: ({color, size}) => (
+              <IconFont name="iconfaxian" size={size} color={color} />
+            ),
+          }}
           name="Found"
           component={Found}
         />
         <Tab.Screen
-          options={{tabBarLabel: '我的'}}
+          options={{
+            tabBarLabel: '我的',
+            tabBarIcon: ({color, size}) => (
+              <IconFont name="iconuser" size={size} color={color} />
+            ),
+          }}
           name="Account"
           component={Account}
         />
