@@ -1,3 +1,4 @@
+import {NavigationState} from '@react-navigation/native';
 import {Dimensions} from 'react-native';
 
 const {width: viewportWidth, height: viewportHeight} = Dimensions.get('window');
@@ -12,4 +13,13 @@ function hp(percent: number) {
   return Math.round(value);
 }
 
-export {viewportHeight, viewportWidth, wp, hp};
+function getActiveRouteName(state: NavigationState) {
+  let route;
+  route = state.routes[state.index];
+  while (route.state && route.state.index) {
+    route = route.state.routes[route.state.index];
+  }
+  return route.name;
+}
+
+export {viewportHeight, viewportWidth, wp, hp, getActiveRouteName};
