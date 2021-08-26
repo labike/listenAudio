@@ -1,13 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2021-08-21 09:52:07
- * @LastEditTime: 2021-08-26 09:39:10
+ * @LastEditTime: 2021-08-26 10:22:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /listenAudio/src/pages/Category/index.tsx
  */
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import {RootState} from '@/models/index';
 import {connect, ConnectedProps} from 'react-redux';
@@ -146,7 +146,7 @@ class Category extends React.Component<IProps, IState> {
     const {myCategorys} = this.state;
     const classifyGroup = _.groupBy(categorys, item => item.classify);
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Text style={styles.classifyName}>我的分类</Text>
         <View style={styles.classifyView}>
           <DragSortableView
@@ -183,7 +183,7 @@ class Category extends React.Component<IProps, IState> {
             );
           })}
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
