@@ -22,7 +22,7 @@ import {RootState} from '@/models/index';
 import {RootStackNavigation} from '@/navigators/index';
 import Carousel, {slideHeight} from './Carousel';
 import Guess from './Guess';
-import {IChannel} from '@/models/home';
+import {IChannel, IGuess} from '@/models/home';
 import ChannelItem from './ChannelItem';
 import {RouteProp} from '@react-navigation/native';
 import {HomeParamList} from '@/navigators/HomeTabs';
@@ -68,11 +68,14 @@ class Home extends React.Component<IProps, IState> {
       type: namespace + '/fetchChannel',
     });
   }
-  onPress = (data: IChannel) => {
-    console.log(data);
+  goAlbum = (data: IChannel | IGuess) => {
+    const {navigation} = this.props;
+    navigation.navigate('Album', {
+      item: data,
+    });
   };
   renderItem = ({item}: ListRenderItemInfo<IChannel>) => {
-    return <ChannelItem data={item} onPress={this.onPress} />;
+    return <ChannelItem data={item} onPress={this.goAlbum} />;
   };
   get header() {
     const {namespace} = this.props;
@@ -80,7 +83,7 @@ class Home extends React.Component<IProps, IState> {
       <View>
         <Carousel />
         <View style={styles.guessBg}>
-          <Guess namespace={namespace} />
+          <Guess namespace={namespace} goAlbum={this.goAlbum} />
         </View>
       </View>
     );

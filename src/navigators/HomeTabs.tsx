@@ -1,8 +1,17 @@
+/*
+ * @Author: your name
+ * @Date: 2021-08-18 15:40:04
+ * @LastEditTime: 2021-08-30 19:39:41
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /listenAudio/src/navigators/HomeTabs.tsx
+ */
 import React from 'react';
 import {
   createMaterialTopTabNavigator,
   MaterialTopTabBarProps,
 } from '@react-navigation/material-top-tabs';
+import ViewPagerAdapter from 'react-native-tab-view-viewpager-adapter';
 import Home from '@/pages/Home';
 import TopTabBarWrapper from '@/pages/views/TopTabBarWrapper';
 import {StyleSheet} from 'react-native';
@@ -55,6 +64,7 @@ class HomeTabs extends React.Component<IProps> {
       <Tab.Navigator
         lazy
         tabBar={this.renderTabBar}
+        pager={props => <ViewPagerAdapter {...props} />}
         sceneContainerStyle={styles.selfContainer}
         tabBarOptions={{
           scrollEnabled: true,

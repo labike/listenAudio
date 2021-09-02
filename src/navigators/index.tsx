@@ -7,30 +7,56 @@
  * @FilePath: /listenAudio/src/navigator/index.tsx
  */
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, RouteProp} from '@react-navigation/native';
 import {
   CardStyleInterpolators,
   createStackNavigator,
   HeaderStyleInterpolators,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import {Platform, StatusBar, StyleSheet} from 'react-native';
+import {Platform, StatusBar, StyleSheet, Animated} from 'react-native';
 
-import Detail from '@/pages/Detail';
 import BottomTabs from './BottomTabs';
 import Category from '@/pages/Category/index';
+import Album from '@/pages/album/index';
 
 export type RootStackParamsList = {
   BottomTabs: undefined;
   Category: undefined;
-  Detail: {
-    id: number;
+  Album: {
+    item: {
+      id: string;
+      title: string;
+      image: string;
+    };
+    opacity?: Animated.Value;
   };
 };
 
 const Stack = createStackNavigator<RootStackParamsList>();
 
 export type RootStackNavigation = StackNavigationProp<RootStackParamsList>;
+
+function getAlbumOptions({
+  route,
+}: {
+  route: RouteProp<RootStackParamsList, 'Album'>;
+}) {
+  return {
+    headerTitle: route.params.item.title,
+    headerTransparent: true,
+    headerTitleStyle: {
+      opacity: route.params.opacity,
+    },
+    headerBackground: () => {
+      return (
+        <Animated.View
+          style={[styles.headerBg, {opacity: route.params.opacity}]}
+        />
+      );
+    },
+  };
+}
 
 class Navigator extends React.Component {
   render() {
@@ -73,14 +99,22 @@ class Navigator extends React.Component {
             component={Category}
           />
           <Stack.Screen
-            options={{headerTitle: '详情页'}}
-            name="Detail"
-            component={Detail}
+            options={getAlbumOptions}
+            name="Album"
+            component={Album}
           />
         </Stack.Navigator>
       </NavigationContainer>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  headerBg: {
+    flex: 1,
+    backgroundColor: '#fff',
+    opacity: 0,
+  },
+});
 
 export default Navigator;
