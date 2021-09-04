@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
 import {IChannel} from '@/models/home';
-import IconFont from '@/assets/confont';
+import IconFont from '@/assets/iconfont';
 import Touchable from '@/components/Touchable';
 
 interface IProps {

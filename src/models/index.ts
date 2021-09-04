@@ -10,14 +10,16 @@ import {DvaLoadingState} from 'dva-loading-ts';
 import category from './category';
 import album from './album';
 import home from './home';
+import player from './player';
 
-const models = [home, category, album];
+const models = [home, category, album, player];
 
 export type RootState = {
   home: typeof home.state;
   loading: DvaLoadingState;
   category: typeof category.state;
   album: typeof album.state;
+  player: typeof player.state;
 } & {
   [key: string]: typeof home.state;
 };

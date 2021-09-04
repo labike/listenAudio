@@ -6,6 +6,7 @@
  * @Description: In User Settings Edit
  * @FilePath: /listenAudio/src/pages/album/Tab.tsx
  */
+
 import React from 'react';
 import {
   NativeScrollEvent,
@@ -20,6 +21,7 @@ import {
   TapGestureHandler,
 } from 'react-native-gesture-handler';
 import {SceneRendererProps, TabBar, TabView} from 'react-native-tab-view';
+import { IProgram } from '@/models/album';
 
 LogBox.ignoreLogs([
   'Non-serializable values were found in the navigation state',
@@ -43,6 +45,7 @@ export interface ITabProps {
   tapRef: React.RefObject<TapGestureHandler>;
   nativeRef: React.RefObject<NativeViewGestureHandler>;
   scrollDrag: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  onItemPress: (data: IProgram, index: number) => void;
 }
 
 class Tab extends React.Component<ITabProps, IState> {
@@ -59,7 +62,7 @@ class Tab extends React.Component<ITabProps, IState> {
     });
   };
   renderScreen = ({route}: {route: IRoute}) => {
-    const {panRef, tapRef, nativeRef, scrollDrag} = this.props;
+    const {panRef, tapRef, nativeRef, scrollDrag, onItemPress} = this.props;
     switch (route.key) {
       case 'introduction':
         return <Introduction />;
@@ -70,6 +73,7 @@ class Tab extends React.Component<ITabProps, IState> {
             panRef={panRef}
             tapRef={tapRef}
             nativeRef={nativeRef}
+            onItemPress={onItemPress}
           />
         );
     }

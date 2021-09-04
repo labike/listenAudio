@@ -5918,6 +5918,11 @@ react-native-screens@^3.5.0:
   dependencies:
     warn-once "^0.1.0"
 
+react-native-slider-x@^0.11.3:
+  version "0.11.3"
+  resolved "https://registry.nlark.com/react-native-slider-x/download/react-native-slider-x-0.11.3.tgz#a1a7561e807c5d38019e9bdffbef2cd2e75ef7e9"
+  integrity sha1-oadWHoB8XTgBnpvf++8s0ude9+k=
+
 react-native-snap-carousel@^3.9.1:
   version "3.9.1"
   resolved "https://registry.nlark.com/react-native-snap-carousel/download/react-native-snap-carousel-3.9.1.tgz#6fd9bd8839546c2c6043a41d2035afbc6fe0443e"
@@ -5925,6 +5930,11 @@ react-native-snap-carousel@^3.9.1:
   dependencies:
     prop-types "^15.6.1"
     react-addons-shallow-compare "15.6.2"
+
+react-native-sound@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.nlark.com/react-native-sound/download/react-native-sound-0.11.1.tgz#e28427b3543fbf9fc6d7c96b27e79b27cd134e95"
+  integrity sha1-4oQns1Q/v5/G18lrJ+ebJ80TTpU=
 
 react-native-storage@^1.0.1:
   version "1.0.1"

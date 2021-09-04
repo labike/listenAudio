@@ -13,7 +13,7 @@ import {connect, ConnectedProps} from 'react-redux';
 import {RootState} from '@/models/index';
 import {IGuess} from '@/models/home';
 import Touchable from '@/components/Touchable';
-import IconFont from '@/assets/confont';
+import IconFont from '@/assets/iconfont';
 
 const mapStateToProps = ({home}: RootState) => {
   return {

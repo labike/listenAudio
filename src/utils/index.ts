@@ -22,4 +22,10 @@ function getActiveRouteName(state: NavigationState) {
   return route.name;
 }
 
-export {viewportHeight, viewportWidth, wp, hp, getActiveRouteName};
+function formatTime(seconds: number) {
+  const m = parseInt((seconds % (60 * 60)) / 60 + '', 10);
+  const s = parseInt((seconds % 60) + '', 10);
+  return (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
+}
+
+export {viewportHeight, viewportWidth, wp, hp, getActiveRouteName, formatTime};

@@ -14,7 +14,7 @@ import {RouteProp} from '@react-navigation/native';
 import {BlurView} from '@react-native-community/blur';
 
 import {RootState} from '@/models/index';
-import {RootStackNavigation, RootStackParamsList} from '@/navigators/index';
+import {ModalStackNavigation, RootStackParamsList} from '@/navigators/index';
 import Tab from './Tab';
 import {
   NativeViewGestureHandler,
@@ -25,11 +25,13 @@ import {
 } from 'react-native-gesture-handler';
 import {viewportHeight} from '@/utils/index';
 import coverRight from '@/assets/cover-right.png';
+import {IProgram} from '@/models/album';
 
 const mapStateToProps = ({album}: RootState) => {
   return {
     summary: album.summary,
     author: album.author,
+    list: album.list,
   };
 };
 
@@ -40,7 +42,7 @@ type ModelState = ConnectedProps<typeof connector>;
 interface IProps extends ModelState {
   headerHeight: number;
   route: RouteProp<RootStackParamsList, 'Album'>;
-  navigation: RootStackNavigation;
+  navigation: ModalStackNavigation;
 }
 
 const HEADER_HEIGHT = 260;
@@ -179,6 +181,24 @@ class Album extends React.Component<IProps> {
       }
     }
   };
+  onItemPress = (data: IProgram, index: number) => {
+    const {navigation, dispatch, list, route} = this.props;
+    const previuosItem = list[index - 1];
+    const nextItem = list[index + 1];
+    dispatch({
+      type: 'player/setState',
+      payload: {
+        previuosId: previuosItem ? previuosItem.id : '',
+        nextId: nextItem ? nextItem.id : '',
+        title: data.title,
+        sound: list.map(item => ({id: item.id, title: item.title})),
+        thumbnailUrl: route.params.item.image,
+      },
+    });
+    navigation.navigate('Detail', {
+      id: data.id,
+    });
+  };
   render() {
     return (
       <TapGestureHandler ref={this.tapRef} maxDeltaY={-this.RANGE[0]}>
@@ -210,6 +230,7 @@ class Album extends React.Component<IProps> {
                   tapRef={this.tapRef}
                   nativeRef={this.nativeRef}
                   scrollDrag={this.scrollDrag}
+                  onItemPress={this.onItemPress}
                 />
               </View>
             </Animated.View>

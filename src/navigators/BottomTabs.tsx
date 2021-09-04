@@ -17,7 +17,7 @@ import {
   getFocusedRouteNameFromRoute,
 } from '@react-navigation/native';
 import {RootStackNavigation, RootStackParamsList} from '.';
-import IconFont from '@/assets/confont';
+import IconFont from '@/assets/iconfont';
 import HomeTabs from './HomeTabs';
 
 export type BottomTabParamList = {
