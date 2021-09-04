@@ -45,7 +45,7 @@ export interface PlayerModel extends Model {
 const initialState: PlayerModelState = {
   id: '',
   soundUrl: '',
-  playState: '',
+  playState: 'paused',
   currentTime: 0,
   duration: 0,
   previousId: '',
@@ -87,6 +87,7 @@ const playerModel: PlayerModel = {
   },
   effects: {
     *fetchPlayer({payload}, {call, put}) {
+      yield call(stop);
       const {data} = yield call(axios.get, PLAYER_URL, {
         params: {id: payload.id},
       });
@@ -141,8 +142,7 @@ const playerModel: PlayerModel = {
       },
       {type: 'watcher'},
     ],
-    *previuos(_, {call, put, select}) {
-      yield call(stop);
+    *previuos(_, {put, select}) {
       const {id, sounds}: PlayerModelState = yield select(
         ({player}: RootState) => player,
       );
@@ -167,8 +167,7 @@ const playerModel: PlayerModel = {
         },
       });
     },
-    *next(_, {call, put, select}) {
-      yield call(stop);
+    *next(_, {put, select}) {
       const {id, sounds}: PlayerModelState = yield select(
         ({player}: RootState) => player,
       );

@@ -7,7 +7,11 @@
  * @FilePath: /listenAudio/src/navigator/index.tsx
  */
 import React from 'react';
-import {NavigationContainer, RouteProp} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  NavigationState,
+  RouteProp,
+} from '@react-navigation/native';
 import {
   CardStyleInterpolators,
   createStackNavigator,
@@ -22,6 +26,8 @@ import Category from '@/pages/Category/index';
 import Album from '@/pages/album/index';
 import Detail from '@/pages/Detail';
 import IconFont from '@/assets/iconfont';
+import PlayView from '@/pages/views/PlayView';
+import {getActiveRouteName, naviogationRef} from '@/utils/index';
 
 export type RootStackParamsList = {
   BottomTabs: undefined;
@@ -154,10 +160,25 @@ function ModalStackScreen() {
 }
 
 class Navigator extends React.Component {
+  state = {
+    routeName: 'Root',
+  };
+  stateChange = (state: NavigationState | undefined) => {
+    if (typeof state !== 'undefined') {
+      const routeName = getActiveRouteName(state);
+      this.setState({
+        routeName,
+      });
+    }
+  };
   render() {
+    const {routeName} = this.state;
     return (
-      <NavigationContainer>
+      <NavigationContainer
+        ref={naviogationRef}
+        onStateChange={this.stateChange}>
         <ModalStackScreen />
+        <PlayView routeName={routeName} />
       </NavigationContainer>
     );
   }

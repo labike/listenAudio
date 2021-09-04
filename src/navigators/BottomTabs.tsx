@@ -19,12 +19,14 @@ import {
 import {RootStackNavigation, RootStackParamsList} from '.';
 import IconFont from '@/assets/iconfont';
 import HomeTabs from './HomeTabs';
+import Play from '@/pages/views/Play';
 
 export type BottomTabParamList = {
   HomeTabs: undefined;
   Listen: undefined;
   Found: undefined;
   Account: undefined;
+  Play: undefined;
 };
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
@@ -103,6 +105,15 @@ class BottomTabs extends React.Component<IProps> {
           }}
           name="Listen"
           component={Listen}
+        />
+        <Tab.Screen
+          options={({navigation}) => ({
+            tabBarButton: () => {
+              return <Play onPress={() => navigation.navigate('Detail')} />;
+            },
+          })}
+          name="Play"
+          component={Play}
         />
         <Tab.Screen
           options={{
