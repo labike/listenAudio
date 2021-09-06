@@ -4,6 +4,7 @@
 import React, { FunctionComponent } from 'react';
 import { ViewProps } from 'react-native';
 import { GProps } from 'react-native-svg';
+import Icondelete from './Icondelete';
 import Icontime from './Icontime';
 import Iconhuanyipi from './Iconhuanyipi';
 import Iconmore from './Iconmore';
@@ -25,7 +26,7 @@ import Iconshengyin from './Iconshengyin';
 import Iconxihuan from './Iconxihuan';
 import Iconzanting from './Iconzanting';
 
-export type IconNames = 'icontime' | 'iconhuanyipi' | 'iconmore' | 'iconhome' | 'iconPause' | 'iconbofang2' | 'iconuser' | 'iconcollection-b' | 'iconfaxian' | 'iconshouyexuanzhong' | 'iconxiala' | 'iconxiayiqu' | 'iconshangyiqu' | 'iconlike' | 'iconfanhui' | 'iconjiantou' | 'iconlisten' | 'iconshengyin' | 'iconxihuan' | 'iconzanting';
+export type IconNames = 'icondelete' | 'icontime' | 'iconhuanyipi' | 'iconmore' | 'iconhome' | 'iconPause' | 'iconbofang2' | 'iconuser' | 'iconcollection-b' | 'iconfaxian' | 'iconshouyexuanzhong' | 'iconxiala' | 'iconxiayiqu' | 'iconshangyiqu' | 'iconlike' | 'iconfanhui' | 'iconjiantou' | 'iconlisten' | 'iconshengyin' | 'iconxihuan' | 'iconzanting';
 
 interface Props extends GProps, ViewProps {
   name: IconNames;
@@ -35,46 +36,48 @@ interface Props extends GProps, ViewProps {
 
 let IconFont: FunctionComponent<Props> = ({ name, ...rest }) => {
   switch (name) {
+    case 'icondelete':
+      return <Icondelete key="1" {...rest} />;
     case 'icontime':
-      return <Icontime key="1" {...rest} />;
+      return <Icontime key="2" {...rest} />;
     case 'iconhuanyipi':
-      return <Iconhuanyipi key="2" {...rest} />;
+      return <Iconhuanyipi key="3" {...rest} />;
     case 'iconmore':
-      return <Iconmore key="3" {...rest} />;
+      return <Iconmore key="4" {...rest} />;
     case 'iconhome':
-      return <Iconhome key="4" {...rest} />;
+      return <Iconhome key="5" {...rest} />;
     case 'iconPause':
-      return <IconPause key="5" {...rest} />;
+      return <IconPause key="6" {...rest} />;
     case 'iconbofang2':
-      return <Iconbofang2 key="6" {...rest} />;
+      return <Iconbofang2 key="7" {...rest} />;
     case 'iconuser':
-      return <Iconuser key="7" {...rest} />;
+      return <Iconuser key="8" {...rest} />;
     case 'iconcollection-b':
-      return <IconcollectionB key="8" {...rest} />;
+      return <IconcollectionB key="9" {...rest} />;
     case 'iconfaxian':
-      return <Iconfaxian key="9" {...rest} />;
+      return <Iconfaxian key="10" {...rest} />;
     case 'iconshouyexuanzhong':
-      return <Iconshouyexuanzhong key="10" {...rest} />;
+      return <Iconshouyexuanzhong key="11" {...rest} />;
     case 'iconxiala':
-      return <Iconxiala key="11" {...rest} />;
+      return <Iconxiala key="12" {...rest} />;
     case 'iconxiayiqu':
-      return <Iconxiayiqu key="12" {...rest} />;
+      return <Iconxiayiqu key="13" {...rest} />;
     case 'iconshangyiqu':
-      return <Iconshangyiqu key="13" {...rest} />;
+      return <Iconshangyiqu key="14" {...rest} />;
     case 'iconlike':
-      return <Iconlike key="14" {...rest} />;
+      return <Iconlike key="15" {...rest} />;
     case 'iconfanhui':
-      return <Iconfanhui key="15" {...rest} />;
+      return <Iconfanhui key="16" {...rest} />;
     case 'iconjiantou':
-      return <Iconjiantou key="16" {...rest} />;
+      return <Iconjiantou key="17" {...rest} />;
     case 'iconlisten':
-      return <Iconlisten key="17" {...rest} />;
+      return <Iconlisten key="18" {...rest} />;
     case 'iconshengyin':
-      return <Iconshengyin key="18" {...rest} />;
+      return <Iconshengyin key="19" {...rest} />;
     case 'iconxihuan':
-      return <Iconxihuan key="19" {...rest} />;
+      return <Iconxihuan key="20" {...rest} />;
     case 'iconzanting':
-      return <Iconzanting key="20" {...rest} />;
+      return <Iconzanting key="21" {...rest} />;
   }
 
   return null;
