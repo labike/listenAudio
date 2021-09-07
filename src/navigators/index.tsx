@@ -23,7 +23,7 @@ import {Platform, StatusBar, StyleSheet, Animated} from 'react-native';
 
 import BottomTabs from './BottomTabs';
 import Category from '@/pages/Category/index';
-import Album from '@/pages/album/index';
+import Album from '@/pages/Album/index';
 import Detail from '@/pages/Detail';
 import IconFont from '@/assets/iconfont';
 import PlayView from '@/pages/views/PlayView';

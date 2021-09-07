@@ -19,6 +19,7 @@
     "@react-navigation/native": "^5.x",
     "@react-navigation/stack": "^5.x",
     "@types/lodash": "^4.14.172",
+    "@types/react-native-video": "^5.0.9",
     "axios": "^0.21.1",
     "dva-core-ts": "^2.0.7",
     "dva-loading-ts": "^3.0.23",
@@ -42,6 +43,8 @@
     "react-native-svg": "^12.1.1",
     "react-native-tab-view": "^2.16.0",
     "react-native-tab-view-viewpager-adapter": "^1.1.0",
+    "react-native-video": "^5.1.1",
+    "react-native-video-custom-controls": "^0.1.0",
     "react-navigation-header-buttons": "^7.0.2",
     "react-redux": "^7.2.4",
     "realm": "^10.7.0"
