@@ -61,7 +61,6 @@ const realm = new Realm({
 export function saveProgram(data: Partial<IProgram>) {
   try {
     realm.write(() => {
-      console.log(data);
       realm.create('Program', data, true);
     });
   } catch (error) {

@@ -34,6 +34,10 @@ function formatTime(seconds: number) {
   return (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
 }
 
+function goBack() {
+  naviogationRef.current?.goBack();
+}
+
 export {
   naviogationRef,
   navigate,
@@ -43,4 +47,5 @@ export {
   hp,
   getActiveRouteName,
   formatTime,
+  goBack,
 };

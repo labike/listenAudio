@@ -28,6 +28,7 @@ import Detail from '@/pages/Detail';
 import IconFont from '@/assets/iconfont';
 import PlayView from '@/pages/views/PlayView';
 import {getActiveRouteName, naviogationRef} from '@/utils/index';
+import Login from '@/pages/Login';
 
 export type RootStackParamsList = {
   BottomTabs: undefined;
@@ -115,6 +116,7 @@ export type ModalStackParamList = {
   Detail: {
     id: string;
   };
+  Login: undefined;
 };
 
 const ModalStack = createStackNavigator<ModalStackParamList>();
@@ -127,6 +129,7 @@ function ModalStackScreen() {
         gestureEnabled: true,
         ...TransitionPresets.ModalSlideFromBottomIOS,
         headerBackTitleVisible: false,
+        headerTintColor: '#333',
       }}
       mode="modal"
       headerMode="screen">
@@ -154,6 +157,11 @@ function ModalStackScreen() {
         }}
         name="Detail"
         component={Detail}
+      />
+      <ModalStack.Screen
+        name="Login"
+        component={Login}
+        options={{headerTitle: '登录'}}
       />
     </ModalStack.Navigator>
   );

@@ -12,8 +12,9 @@ import album from './album';
 import home from './home';
 import player from './player';
 import found from './found';
+import user from './user';
 
-const models = [home, category, album, player, found];
+const models = [home, category, album, player, found, user];
 
 export type RootState = {
   home: typeof home.state;
@@ -21,6 +22,7 @@ export type RootState = {
   category: typeof category.state;
   album: typeof album.state;
   player: typeof player.state;
+  user: typeof user.state;
 } & {
   [key: string]: typeof home.state;
 };

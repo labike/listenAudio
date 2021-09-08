@@ -30,7 +30,6 @@ class Listen extends React.Component {
     });
   };
   renderItem = ({item}: ListRenderItemInfo<IProgram>) => {
-    console.log('item>>>>>', item);
     return (
       <View style={styles.item}>
         <Image source={{uri: item.thumbnailUrl}} style={styles.img} />
