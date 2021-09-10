@@ -38,7 +38,7 @@ class Listen extends React.Component {
           <View style={styles.bottom}>
             <IconFont name="icontime" size={14} color="#999" />
             <Text style={styles.text}>{formatTime(item.duration)}</Text>
-            <Text style={styles.rate}>已播: {item.rate}%</Text>
+            {/* <Text style={styles.rate}>已播: {item.rate}%</Text> */}
           </View>
         </View>
         <Touchable
