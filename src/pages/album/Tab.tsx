@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-27 09:38:08
- * @LastEditTime: 2021-09-01 19:56:14
+ * @LastEditTime: 2021-09-13 09:28:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /listenAudio/src/pages/album/Tab.tsx
@@ -21,7 +21,7 @@ import {
   TapGestureHandler,
 } from 'react-native-gesture-handler';
 import {SceneRendererProps, TabBar, TabView} from 'react-native-tab-view';
-import { IProgram } from '@/models/album';
+import {IProgram} from '@/models/album';
 
 LogBox.ignoreLogs([
   'Non-serializable values were found in the navigation state',
@@ -57,6 +57,7 @@ class Tab extends React.Component<ITabProps, IState> {
     index: 1,
   };
   onIndexChange = (index: number) => {
+    // console.log('index:', index);
     this.setState({
       index: index,
     });

@@ -6587,6 +6587,11 @@ react-native-linear-gradient@^2.5.6:
   resolved "https://registry.nlark.com/react-native-linear-gradient/download/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
   integrity sha1-liFcvF7HoBJHogiQiIqnW4NNRKA=
 
+react-native-pager-view@^5.4.1:
+  version "5.4.1"
+  resolved "https://registry.nlark.com/react-native-pager-view/download/react-native-pager-view-5.4.1.tgz#88641ff083ca4379497dc03891fdc2d5b6f82263"
+  integrity sha1-iGQf8IPKQ3lJfcA4kf3C1bb4ImM=
+
 react-native-reanimated@^2.2.0:
   version "2.2.0"
   resolved "https://registry.nlark.com/react-native-reanimated/download/react-native-reanimated-2.2.0.tgz?cache=0&sync_timestamp=1627566683176&other_urls=https%3A%2F%2Fregistry.nlark.com%2Freact-native-reanimated%2Fdownload%2Freact-native-reanimated-2.2.0.tgz#a6412c56b4e591d1f00fac949f62d0c72c357c78"
@@ -6666,10 +6671,10 @@ react-native-tab-view-viewpager-adapter@^1.1.0:
   resolved "https://registry.nlark.com/react-native-tab-view-viewpager-adapter/download/react-native-tab-view-viewpager-adapter-1.1.0.tgz#d6e085ed1c91a13e714d87395d428f8afc2b3377"
   integrity sha1-1uCF7RyRoT5xTYc5XUKPivwrM3c=
 
-react-native-tab-view@^2.16.0:
-  version "2.16.0"
-  resolved "https://registry.nlark.com/react-native-tab-view/download/react-native-tab-view-2.16.0.tgz#cae72c7084394bd328fac5fefb86cd966df37a86"
-  integrity sha1-yucscIQ5S9Mo+sX++4bNlm3zeoY=
+react-native-tab-view@3.1.1:
+  version "3.1.1"
+  resolved "https://registry.nlark.com/react-native-tab-view/download/react-native-tab-view-3.1.1.tgz#1f8d7a835ab4f5b1b1407ec8dddc1053b53fa3c6"
+  integrity sha1-H416g1q09bGxQH7I3dwQU7U/o8Y=
 
 react-native-upload@^2.2.1:
   version "2.2.1"

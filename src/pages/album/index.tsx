@@ -182,6 +182,7 @@ class Album extends React.Component<IProps> {
     }
   };
   onItemPress = (data: IProgram, index: number) => {
+    console.log('sdfsdsf');
     const {navigation, dispatch, list, route} = this.props;
     const previuosItem = list[index - 1];
     const nextItem = list[index + 1];
