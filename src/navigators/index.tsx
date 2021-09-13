@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-17 17:47:22
- * @LastEditTime: 2021-08-21 09:54:44
+ * @LastEditTime: 2021-09-10 10:11:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /listenAudio/src/navigator/index.tsx
@@ -20,6 +20,7 @@ import {
   TransitionPresets,
 } from '@react-navigation/stack';
 import {Platform, StatusBar, StyleSheet, Animated} from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 
 import BottomTabs from './BottomTabs';
 import Category from '@/pages/Category/index';
@@ -171,6 +172,9 @@ class Navigator extends React.Component {
   state = {
     routeName: 'Root',
   };
+  componentDidMount() {
+    SplashScreen.hide();
+  }
   stateChange = (state: NavigationState | undefined) => {
     if (typeof state !== 'undefined') {
       const routeName = getActiveRouteName(state);

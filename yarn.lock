@@ -1671,6 +1671,17 @@ anymatch@^3.0.3:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
+app-info-parser@^0.3.13:
+  version "0.3.13"
+  resolved "https://registry.nlark.com/app-info-parser/download/app-info-parser-0.3.13.tgz#9be26c2aa9e1ad870b54bffba991fa540fe18fb9"
+  integrity sha1-m+JsKqnhrYcLVL/7qZH6VA/hj7k=
+  dependencies:
+    bplist-parser "^0.2.0"
+    bytebuffer "^5.0.1"
+    cgbi-to-png "^1.0.7"
+    isomorphic-unzip "^1.1.5"
+    plist "^3.0.1"
+
 appdirsjs@^1.2.4:
   version "1.2.5"
   resolved "https://registry.nlark.com/appdirsjs/download/appdirsjs-1.2.5.tgz#c9888c8a0a908014533d5176ec56f1d5a8fd3700"
@@ -2080,7 +2091,7 @@ bplist-creator@0.0.8:
   dependencies:
     stream-buffers "~2.2.0"
 
-bplist-parser@0.2.0:
+bplist-parser@0.2.0, bplist-parser@^0.2.0:
   version "0.2.0"
   resolved "https://registry.nlark.com/bplist-parser/download/bplist-parser-0.2.0.tgz#43a9d183e5bf9d545200ceac3e712f79ebbe8d0e"
   integrity sha1-Q6nRg+W/nVRSAM6sPnEveeu+jQ4=
@@ -2148,18 +2159,35 @@ bson@4.4.1:
   dependencies:
     buffer "^5.6.0"
 
+buffer-crc32@~0.2.3:
+  version "0.2.13"
+  resolved "https://registry.nlark.com/buffer-crc32/download/buffer-crc32-0.2.13.tgz#0d333e3f00eac50aa1454abd30ef8c2a5d9a7242"
+  integrity sha1-DTM+PwDqxQqhRUq9MO+MKl2ackI=
+
 buffer-from@^1.0.0:
   version "1.1.2"
   resolved "https://registry.nlark.com/buffer-from/download/buffer-from-1.1.2.tgz?cache=0&sync_timestamp=1627578510347&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fbuffer-from%2Fdownload%2Fbuffer-from-1.1.2.tgz#2b146a6fd72e80b4f55d255f35ed59a3a9a41bd5"
   integrity sha1-KxRqb9cugLT1XSVfNe1Zo6mkG9U=
 
-buffer@^5.5.0, buffer@^5.6.0:
+buffer@^5.0.7, buffer@^5.1.0, buffer@^5.5.0, buffer@^5.6.0:
   version "5.7.1"
   resolved "https://registry.nlark.com/buffer/download/buffer-5.7.1.tgz#ba62e7c13133053582197160851a8f648e99eed0"
   integrity sha1-umLnwTEzBTWCGXFghRqPZI6Z7tA=
   dependencies:
     base64-js "^1.3.1"
     ieee754 "^1.1.13"
+
+bufferpack@0.0.6:
+  version "0.0.6"
+  resolved "https://registry.nlark.com/bufferpack/download/bufferpack-0.0.6.tgz#fb3d8738a0e1e4e03bcff99f9a75f9ec18a9d73e"
+  integrity sha1-+z2HOKDh5OA7z/mfmnX57Bip1z4=
+
+bytebuffer@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.nlark.com/bytebuffer/download/bytebuffer-5.0.1.tgz#582eea4b1a873b6d020a48d58df85f0bba6cfddd"
+  integrity sha1-WC7qSxqHO20CCkjVjfhfC7ps/d0=
+  dependencies:
+    long "~3"
 
 bytes@3.0.0:
   version "3.0.0"
@@ -2244,6 +2272,16 @@ caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.nlark.com/caseless/download/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
+
+cgbi-to-png@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.nlark.com/cgbi-to-png/download/cgbi-to-png-1.0.7.tgz#c7497580f76f87c2f5d825748a9d902b4072c004"
+  integrity sha1-x0l1gPdvh8L12CV0ip2QK0BywAQ=
+  dependencies:
+    bufferpack "0.0.6"
+    crc "^3.3.0"
+    stream-to-buffer "^0.1.0"
+    streamifier "^0.1.1"
 
 chalk@1.1.3, chalk@^1.0.0:
   version "1.1.3"
@@ -2570,6 +2608,13 @@ cosmiconfig@^5.0.5, cosmiconfig@^5.1.0:
     is-directory "^0.3.1"
     js-yaml "^3.13.1"
     parse-json "^4.0.0"
+
+crc@^3.3.0:
+  version "3.8.0"
+  resolved "https://registry.nlark.com/crc/download/crc-3.8.0.tgz#ad60269c2c856f8c299e2c4cc0de4556914056c6"
+  integrity sha1-rWAmnCyFb4wpnixMwN5FVpFAVsY=
+  dependencies:
+    buffer "^5.1.0"
 
 create-react-class@*:
   version "15.7.0"
@@ -3468,6 +3513,13 @@ fbjs@^0.8.4:
     promise "^7.1.1"
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.18"
+
+fd-slicer@~1.1.0:
+  version "1.1.0"
+  resolved "https://registry.nlark.com/fd-slicer/download/fd-slicer-1.1.0.tgz#25c7c89cb1f9077f8891bbe61d8f390eae256f1e"
+  integrity sha1-JcfInLH5B3+IkbvmHY85Dq4lbx4=
+  dependencies:
+    pend "~1.2.0"
 
 figures@^2.0.0:
   version "2.0.0"
@@ -4446,6 +4498,14 @@ isomorphic-fetch@^2.1.1:
     node-fetch "^1.0.1"
     whatwg-fetch ">=0.10.0"
 
+isomorphic-unzip@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.nlark.com/isomorphic-unzip/download/isomorphic-unzip-1.1.5.tgz#9e5a18e77e3e760b631ee451f643c784b4f880dd"
+  integrity sha1-nloY534+dgtjHuRR9kPHhLT4gN0=
+  dependencies:
+    buffer "^5.0.7"
+    yauzl "^2.8.0"
+
 isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.nlark.com/isstream/download/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
@@ -5193,6 +5253,11 @@ logkitty@^0.7.1:
     ansi-fragments "^0.2.1"
     dayjs "^1.8.15"
     yargs "^15.1.0"
+
+long@~3:
+  version "3.2.0"
+  resolved "https://registry.nlark.com/long/download/long-3.2.0.tgz#d821b7138ca1cb581c172990ef14db200b5c474b"
+  integrity sha1-2CG3E4yhy1gcFymQ7xTbIAtcR0s=
 
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
   version "1.4.0"
@@ -6177,6 +6242,11 @@ path-parse@^1.0.6:
   resolved "https://registry.nlark.com/path-parse/download/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
   integrity sha1-+8EUtgykKzDZ2vWFjkvWi77bZzU=
 
+pend@~1.2.0:
+  version "1.2.0"
+  resolved "https://registry.nlark.com/pend/download/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
+  integrity sha1-elfrVQpng/kRUzH89GY9XI4AelA=
+
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.nlark.com/performance-now/download/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
@@ -6365,6 +6435,11 @@ punycode@^2.1.0, punycode@^2.1.1:
   version "2.1.1"
   resolved "https://registry.nlark.com/punycode/download/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha1-tYsBCsQMIsVldhbI0sLALHv0eew=
+
+qrcode-terminal@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.nlark.com/qrcode-terminal/download/qrcode-terminal-0.12.0.tgz#bb5b699ef7f9f0505092a3748be4464fe71b5819"
+  integrity sha1-u1tpnvf58FBQkqN0i+RGT+cbWBk=
 
 qs@^6.1.0:
   version "6.10.1"
@@ -6565,6 +6640,11 @@ react-native-sound@^0.11.1:
   resolved "https://registry.nlark.com/react-native-sound/download/react-native-sound-0.11.1.tgz#e28427b3543fbf9fc6d7c96b27e79b27cd134e95"
   integrity sha1-4oQns1Q/v5/G18lrJ+ebJ80TTpU=
 
+react-native-splash-screen@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.nlark.com/react-native-splash-screen/download/react-native-splash-screen-3.2.0.tgz#d47ec8557b1ba988ee3ea98d01463081b60fff45"
+  integrity sha1-1H7IVXsbqYjuPqmNAUYwgbYP/0U=
+
 react-native-storage@^1.0.1:
   version "1.0.1"
   resolved "https://registry.nlark.com/react-native-storage/download/react-native-storage-1.0.1.tgz#2c493875ff76ec301987c951a8302f3a54381241"
@@ -6590,6 +6670,16 @@ react-native-tab-view@^2.16.0:
   version "2.16.0"
   resolved "https://registry.nlark.com/react-native-tab-view/download/react-native-tab-view-2.16.0.tgz#cae72c7084394bd328fac5fefb86cd966df37a86"
   integrity sha1-yucscIQ5S9Mo+sX++4bNlm3zeoY=
+
+react-native-upload@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.nlark.com/react-native-upload/download/react-native-upload-2.2.1.tgz#561bc0852fc80857d24bdcc5c38aa2598bb130e1"
+  integrity sha1-VhvAhS/ICFfSS9zFw4qiWYuxMOE=
+  dependencies:
+    app-info-parser "^0.3.13"
+    colors "^1.4.0"
+    minimist "^1.2.5"
+    qrcode-terminal "^0.12.0"
 
 react-native-video-custom-controls@^0.1.0:
   version "0.1.0"
@@ -7486,6 +7576,23 @@ stream-counter@^1.0.0:
   version "1.0.0"
   resolved "https://registry.nlark.com/stream-counter/download/stream-counter-1.0.0.tgz#91cf2569ce4dc5061febcd7acb26394a5a114751"
   integrity sha1-kc8lac5NxQYf6816yyY5SloRR1E=
+
+stream-to-buffer@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.nlark.com/stream-to-buffer/download/stream-to-buffer-0.1.0.tgz#26799d903ab2025c9bd550ac47171b00f8dd80a9"
+  integrity sha1-JnmdkDqyAlyb1VCsRxcbAPjdgKk=
+  dependencies:
+    stream-to "~0.2.0"
+
+stream-to@~0.2.0:
+  version "0.2.2"
+  resolved "https://registry.nlark.com/stream-to/download/stream-to-0.2.2.tgz#84306098d85fdb990b9fa300b1b3ccf55e8ef01d"
+  integrity sha1-hDBgmNhf25kLn6MAsbPM9V6O8B0=
+
+streamifier@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.nlark.com/streamifier/download/streamifier-0.1.1.tgz#97e98d8fa4d105d62a2691d1dc07e820db8dfc4f"
+  integrity sha1-l+mNj6TRBdYqJpHR3AfoINuN/E8=
 
 strict-uri-encode@^2.0.0:
   version "2.0.0"
@@ -8399,6 +8506,14 @@ yargs@^15.1.0, yargs@^15.3.1, yargs@^15.4.1:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
+
+yauzl@^2.8.0:
+  version "2.10.0"
+  resolved "https://registry.nlark.com/yauzl/download/yauzl-2.10.0.tgz#c7eb17c93e112cb1086fa6d8e51fb0667b79a5f9"
+  integrity sha1-x+sXyT4RLLEIb6bY5R+wZnt5pfk=
+  dependencies:
+    buffer-crc32 "~0.2.3"
+    fd-slicer "~1.1.0"
 
 yup@^0.32.9:
   version "0.32.9"
