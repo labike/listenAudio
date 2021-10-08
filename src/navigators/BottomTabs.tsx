@@ -6,7 +6,7 @@
  * @Description: In User Settings Edit
  * @FilePath: /listenAudio/src/navigators/BottomTabs.tsx
  */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Listen from '@/pages/Listen';
@@ -61,9 +61,9 @@ function getHeaderTitle(routeName: string) {
   }
 }
 
-class BottomTabs extends React.Component<IProps> {
-  setOptions() {
-    const {navigation, route} = this.props;
+function BottomTabs(props: IProps) {
+  const setOptions = () => {
+    const {navigation, route} = props;
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'HomeTabs';
     if (routeName === 'HomeTabs') {
       navigation.setOptions({
@@ -76,68 +76,69 @@ class BottomTabs extends React.Component<IProps> {
         headerTitle: getHeaderTitle(routeName),
       });
     }
-  }
-  componentDidMount() {
-    this.setOptions();
-  }
-  componentDidUpdate() {
-    this.setOptions();
-  }
-  render() {
-    return (
-      <Tab.Navigator tabBarOptions={{activeTintColor: '#f86442'}}>
-        <Tab.Screen
-          options={{
-            tabBarLabel: '首页',
-            tabBarIcon: ({color, size}) => (
-              <IconFont name="iconhome" size={size} color={color} />
-            ),
-          }}
-          name="HomeTabs"
-          component={HomeTabs}
-        />
-        <Tab.Screen
-          options={{
-            tabBarLabel: '我听',
-            tabBarIcon: ({color, size}) => (
-              <IconFont name="iconlisten" size={size} color={color} />
-            ),
-          }}
-          name="Listen"
-          component={Listen}
-        />
-        <Tab.Screen
-          options={({navigation}) => ({
-            tabBarButton: () => {
-              return <Play onPress={() => navigation.navigate('Detail')} />;
-            },
-          })}
-          name="Play"
-          component={Play}
-        />
-        <Tab.Screen
-          options={{
-            tabBarLabel: '发现',
-            tabBarIcon: ({color, size}) => (
-              <IconFont name="iconfaxian" size={size} color={color} />
-            ),
-          }}
-          name="Found"
-          component={Found}
-        />
-        <Tab.Screen
-          options={{
-            tabBarLabel: '我的',
-            tabBarIcon: ({color, size}) => (
-              <IconFont name="iconuser" size={size} color={color} />
-            ),
-          }}
-          name="Account"
-          component={Account}
-        />
-      </Tab.Navigator>
-    );
-  }
+  };
+  // componentDidMount() {
+  //   this.setOptions();
+  // }
+  // componentDidUpdate() {
+  //   this.setOptions();
+  // }
+  useEffect(() => {
+    setOptions();
+  });
+  return (
+    <Tab.Navigator tabBarOptions={{activeTintColor: '#f86442'}}>
+      <Tab.Screen
+        options={{
+          tabBarLabel: '首页',
+          tabBarIcon: ({color, size}) => (
+            <IconFont name="iconhome" size={size} color={color} />
+          ),
+        }}
+        name="HomeTabs"
+        component={HomeTabs}
+      />
+      <Tab.Screen
+        options={{
+          tabBarLabel: '我听',
+          tabBarIcon: ({color, size}) => (
+            <IconFont name="iconlisten" size={size} color={color} />
+          ),
+        }}
+        name="Listen"
+        component={Listen}
+      />
+      <Tab.Screen
+        options={({navigation}) => ({
+          tabBarButton: () => {
+            return <Play onPress={() => navigation.navigate('Detail')} />;
+          },
+        })}
+        name="Play"
+        component={Play}
+      />
+      <Tab.Screen
+        options={{
+          tabBarLabel: '发现',
+          tabBarIcon: ({color, size}) => (
+            <IconFont name="iconfaxian" size={size} color={color} />
+          ),
+        }}
+        name="Found"
+        component={Found}
+      />
+      <Tab.Screen
+        options={{
+          tabBarLabel: '我的',
+          tabBarIcon: ({color, size}) => (
+            <IconFont name="iconuser" size={size} color={color} />
+          ),
+        }}
+        name="Account"
+        component={Account}
+      />
+    </Tab.Navigator>
+  );
 }
 
 export default BottomTabs;

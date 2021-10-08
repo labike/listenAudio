@@ -1,12 +1,12 @@
 /*
  * @Author: your name
  * @Date: 2021-08-17 17:47:22
- * @LastEditTime: 2021-09-10 10:11:29
+ * @LastEditTime: 2021-09-25 16:17:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /listenAudio/src/navigator/index.tsx
  */
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   NavigationContainer,
   NavigationState,
@@ -140,6 +140,8 @@ function ModalStackScreen() {
         component={RootStackScreen}
       />
       <ModalStack.Screen
+        name="Detail"
+        component={Detail}
         options={{
           headerTintColor: '#fff',
           headerTitle: '',
@@ -156,8 +158,6 @@ function ModalStackScreen() {
             />
           ),
         }}
-        name="Detail"
-        component={Detail}
       />
       <ModalStack.Screen
         name="Login"
@@ -168,32 +168,23 @@ function ModalStackScreen() {
   );
 }
 
-class Navigator extends React.Component {
-  state = {
-    routeName: 'Root',
-  };
-  componentDidMount() {
+function Navigator() {
+  const [routeName, setRouteName] = useState('Root');
+  useEffect(() => {
     SplashScreen.hide();
-  }
-  stateChange = (state: NavigationState | undefined) => {
+  }, []);
+  const stateChange = (state: NavigationState | undefined) => {
     if (typeof state !== 'undefined') {
       const routeName = getActiveRouteName(state);
-      this.setState({
-        routeName,
-      });
+      setRouteName(routeName);
     }
   };
-  render() {
-    const {routeName} = this.state;
-    return (
-      <NavigationContainer
-        ref={naviogationRef}
-        onStateChange={this.stateChange}>
-        <ModalStackScreen />
-        <PlayView routeName={routeName} />
-      </NavigationContainer>
-    );
-  }
+  return (
+    <NavigationContainer ref={naviogationRef} onStateChange={stateChange}>
+      <ModalStackScreen />
+      <PlayView routeName={routeName} />
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({

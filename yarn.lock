@@ -981,10 +981,10 @@
   dependencies:
     deep-assign "^3.0.0"
 
-"@react-native-community/blur@^3.6.0":
-  version "3.6.0"
-  resolved "https://registry.nlark.com/@react-native-community/blur/download/@react-native-community/blur-3.6.0.tgz#31c9e0f2770519c9b5c4f99418f192246f0d4db8"
-  integrity sha1-Mcng8ncFGcm1xPmUGPGSJG8NTbg=
+"@react-native-community/blur@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.nlark.com/@react-native-community/blur/download/@react-native-community/blur-3.3.0.tgz#a2c62406f416934e8d387cd32ff3911874561cb3"
+  integrity sha1-osYkBvQWk06NOHzTL/ORGHRWHLM=
   dependencies:
     prop-types "^15.5.10"
 

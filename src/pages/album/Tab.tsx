@@ -1,13 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2021-08-27 09:38:08
- * @LastEditTime: 2021-09-13 09:28:37
+ * @LastEditTime: 2021-09-14 10:00:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /listenAudio/src/pages/album/Tab.tsx
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -48,22 +48,19 @@ export interface ITabProps {
   onItemPress: (data: IProgram, index: number) => void;
 }
 
-class Tab extends React.Component<ITabProps, IState> {
-  state = {
-    routes: [
-      {key: 'introduction', title: '简介'},
-      {key: 'albums', title: '节目'},
-    ],
-    index: 1,
+function Tab(props: ITabProps) {
+  const [routes] = useState([
+    {key: 'introduction', title: '简介'},
+    {key: 'albums', title: '节目'},
+  ]);
+  const [index, setIndex] = useState(1);
+
+  const onIndexChange = (index: number) => {
+    console.log('index:', index);
+    setIndex(index);
   };
-  onIndexChange = (index: number) => {
-    // console.log('index:', index);
-    this.setState({
-      index: index,
-    });
-  };
-  renderScreen = ({route}: {route: IRoute}) => {
-    const {panRef, tapRef, nativeRef, scrollDrag, onItemPress} = this.props;
+  const renderScreen = ({route}: {route: IRoute}) => {
+    const {panRef, tapRef, nativeRef, scrollDrag, onItemPress} = props;
     switch (route.key) {
       case 'introduction':
         return <Introduction />;
@@ -79,28 +76,28 @@ class Tab extends React.Component<ITabProps, IState> {
         );
     }
   };
-  renderTabBar = (props: SceneRendererProps & {navigationState: IState}) => {
+  const renderTabBar = (
+    props: SceneRendererProps & {navigationState: IState},
+  ) => {
     return (
       <TabBar
-        labelStyle={styles.labelText}
         {...props}
         scrollEnabled
         style={styles.tabbar}
         tabStyle={styles.tabStyle}
+        labelStyle={styles.labelText}
         indicatorStyle={styles.indicator}
       />
     );
   };
-  render() {
-    return (
-      <TabView
-        navigationState={this.state}
-        onIndexChange={this.onIndexChange}
-        renderScene={this.renderScreen}
-        renderTabBar={this.renderTabBar}
-      />
-    );
-  }
+  return (
+    <TabView
+      navigationState={{routes, index}}
+      onIndexChange={onIndexChange}
+      renderScene={renderScreen}
+      renderTabBar={renderTabBar}
+    />
+  );
 }
 
 const styles = StyleSheet.create({
@@ -111,7 +108,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   tabbar: {
-    backgroundColor: '#ccc',
+    backgroundColor: '#fff',
     ...Platform.select({
       android: {
         elevation: 0,
@@ -122,8 +119,8 @@ const styles = StyleSheet.create({
   },
   indicator: {
     backgroundColor: '#eb6d48',
-    // borderLeftWidth: 20,
-    // borderRightWidth: 20,
+    borderLeftWidth: 20,
+    borderRightWidth: 20,
     borderColor: '#fff',
   },
 });

@@ -263,6 +263,8 @@ PODS:
     - react-native-config/App (= 1.4.3)
   - react-native-config/App (1.4.3):
     - React-Core
+  - react-native-pager-view (5.4.1):
+    - React-Core
   - react-native-safe-area-context (3.3.0):
     - React-Core
   - react-native-splash-screen (3.2.0):
@@ -430,6 +432,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
   - react-native-config (from `../node_modules/react-native-config`)
+  - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - react-native-video (from `../node_modules/react-native-video`)
@@ -509,6 +512,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/blur"
   react-native-config:
     :path: "../node_modules/react-native-config"
+  react-native-pager-view:
+    :path: "../node_modules/react-native-pager-view"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-splash-screen:
@@ -591,6 +596,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 500a59626037be5b3b3d89c5151bc3baa9abf1a9
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
   react-native-config: 387b1ea507bc50a2059e69149dac1342b9532f58
+  react-native-pager-view: 43f51f45f37ec9715f6c188e4af46ccdf79872e8
   react-native-safe-area-context: 61c8c484a3a9e7d1fda19f7b1794b35bbfd2262a
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-video: 0bb76b6d6b77da3009611586c7dbf817b947f30e
