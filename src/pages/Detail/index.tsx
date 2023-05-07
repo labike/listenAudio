@@ -1,13 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2021-08-17 17:46:48
- * @LastEditTime: 2021-09-04 09:20:52
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-07-31 23:19:16
+ * @LastEditors: labike ddmmy@hotmail.com
  * @Description: In User Settings Edit
  * @FilePath: /listenAudio/src/pages/Detail.tsx
  */
 import {RouteProp} from '@react-navigation/native';
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {View, Text, StyleSheet, Animated} from 'react-native';
 import {ModalStackNavigation, ModalStackParamList} from '@/navigators/index';
 import {RootState} from '@/models/index';
@@ -40,11 +40,6 @@ interface IProps extends ModelState {
   route: RouteProp<ModalStackParamList, 'Detail'>;
 }
 
-interface IState {
-  barrage: boolean;
-  barrageData: Msg[];
-}
-
 const IMAGE_WIDTH = 180;
 const SCALE = viewportWidth / IMAGE_WIDTH;
 
@@ -67,14 +62,23 @@ function getText() {
   return data[randomIndex(data.length)];
 }
 
-class Detail extends React.Component<IProps, IState> {
-  state = {
-    barrage: false,
-    barrageData: [],
-  };
-  ani = new Animated.Value(1);
-  componentDidMount() {
-    const {dispatch, route, navigation, title, id} = this.props;
+function Detail({
+  dispatch,
+  route,
+  navigation,
+  title,
+  id,
+  playState,
+  previuodId,
+  nextId,
+  thumbnailUrl,
+}: IProps) {
+  const [barrage, setBarrage] = useState(false);
+  const [barrageData, setBarrageData] = useState<Msg[]>([]);
+
+  const ani = useRef(new Animated.Value(1));
+
+  useEffect(() => {
     if (route.params && route.params.id !== id) {
       dispatch({
         type: 'player/fetchPlayer',
@@ -87,115 +91,96 @@ class Detail extends React.Component<IProps, IState> {
         type: 'player/play',
       });
     }
+  }, [dispatch, id, route]);
+
+  useEffect(() => {
     navigation.setOptions({
       headerTitle: title,
     });
-    this.addBarrage();
-  }
-  componentDidUpdate(prevProps: IProps) {
-    if (this.props.title !== prevProps.title) {
-      this.props.navigation.setOptions({
-        headerTitle: this.props.title,
-      });
-    }
-  }
-  toggle = () => {
-    const {dispatch, playState} = this.props;
+  }, [navigation, title]);
+
+  useEffect(() => {
+    const timmer = setInterval(() => {
+      if (barrage) {
+        const id: any = Date.now();
+        const title = getText();
+        setBarrageData([{id, title}]);
+      }
+    }, 500);
+    return () => {
+      clearInterval(timmer);
+    };
+  }, [barrage]);
+
+  const toggle = () => {
     dispatch({
       type: playState === 'playing' ? 'player/pause' : 'player/play',
     });
   };
-  previuos = () => {
-    const {dispatch} = this.props;
+  const previuos = () => {
     dispatch({
       type: 'player/previuos',
     });
   };
-  next = () => {
-    const {dispatch} = this.props;
+  const next = () => {
     dispatch({
       type: 'player/next',
     });
   };
-  barrage = () => {
-    this.setState({
-      barrage: !this.state.barrage,
-    });
-    Animated.timing(this.ani, {
-      toValue: this.state.barrage ? 1 : SCALE,
+
+  useEffect(() => {
+    Animated.timing(ani.current, {
+      toValue: !barrage ? 1 : SCALE,
       duration: 100,
       useNativeDriver: true,
     }).start();
+  }, [barrage]);
+
+  const _barrage = () => {
+    setBarrage(!barrage);
   };
-  addBarrage = () => {
-    setInterval(() => {
-      const {barrage} = this.state;
-      if (barrage) {
-        const id: any = Date.now();
-        const title = getText();
-        this.setState({
-          barrageData: [
-            {
-              id,
-              title,
-            },
-          ],
-        });
-      }
-    }, 500);
-  };
-  render() {
-    const {playState, previuodId, nextId, thumbnailUrl} = this.props;
-    const {barrage, barrageData} = this.state;
-    return (
-      <View style={styles.container}>
-        <View style={styles.imgView}>
-          <Animated.Image
-            source={{uri: thumbnailUrl}}
-            style={[
-              styles.img,
-              {borderRadius: barrage ? 0 : 8, transform: [{scale: this.ani}]},
-            ]}
-          />
-        </View>
-        {barrage && (
-          <>
-            <Barrage
-              data={barrageData}
-              maxTrack={5}
-              style={{top: PADDING_TOP}}
-            />
-            <LinearGradient
-              colors={['rgba(128, 104, 102, 0.5)', '#807c66']}
-              style={styles.linear}
-            />
-          </>
-        )}
-        <Touchable style={styles.barrage} onPress={this.barrage}>
-          <Text style={styles.barrageText}>弹幕</Text>
-        </Touchable>
-        <PlayerSlider />
-        <View style={styles.control}>
-          <Touchable
-            disabled={!previuodId}
-            onPress={this.previuos}
-            style={styles.btn}>
-            <IconFont name="iconshangyiqu" size={30} color="#fff" />
-          </Touchable>
-          <Touchable onPress={this.toggle} style={styles.btn}>
-            <IconFont
-              size={30}
-              color="#fff"
-              name={playState === 'playing' ? 'iconPause' : 'iconbofang2'}
-            />
-          </Touchable>
-          <Touchable disabled={!nextId} onPress={this.next} style={styles.btn}>
-            <IconFont name="iconxiayiqu" size={30} color="#fff" />
-          </Touchable>
-        </View>
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.imgView}>
+        <Animated.Image
+          source={{uri: thumbnailUrl}}
+          style={[
+            styles.img,
+            {borderRadius: barrage ? 0 : 8, transform: [{scale: ani.current}]},
+          ]}
+        />
       </View>
-    );
-  }
+      {barrage && (
+        <>
+          <Barrage data={barrageData} maxTrack={5} style={{top: PADDING_TOP}} />
+          <LinearGradient
+            colors={['rgba(128, 104, 102, 0.5)', '#807c66']}
+            style={styles.linear}
+          />
+        </>
+      )}
+      <Touchable style={styles.barrage} onPress={_barrage}>
+        <Text style={styles.barrageText}>弹幕</Text>
+      </Touchable>
+      <PlayerSlider />
+      <View style={styles.control}>
+        <Touchable disabled={!previuodId} onPress={previuos} style={styles.btn}>
+          <IconFont name="iconshangyiqu" size={30} color="#fff" />
+        </Touchable>
+        <Touchable onPress={toggle} style={styles.btn}>
+          <IconFont
+            size={30}
+            color="#fff"
+            name={playState === 'playing' ? 'iconPause' : 'iconbofang2'}
+          />
+        </Touchable>
+        <Touchable disabled={!nextId} onPress={next} style={styles.btn}>
+          <IconFont name="iconxiayiqu" size={30} color="#fff" />
+        </Touchable>
+      </View>
+    </View>
+  );
 }
 
 const PADDING_TOP = (viewportWidth - IMAGE_WIDTH) / 2;

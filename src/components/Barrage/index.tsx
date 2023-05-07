@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Item from './Item';
 
@@ -41,6 +41,15 @@ function addBarrage(data: Msg[], maxTrack: number, list: IBarrage[][]) {
   return list;
 }
 
+// 自定义hooks
+function useDerivedState(cb: Function, data: any) {
+  const [prevData, setPrevData] = useState<any>(null);
+  if (data !== prevData) {
+    cb();
+    setPrevData(data);
+  }
+}
+
 /**
  * 获取弹幕轨道下标
  * @param list
@@ -53,7 +62,7 @@ function getTrackIndex(list: IBarrage[][], maxTrack: number) {
     if (!barragesOfTrack || barragesOfTrack.length === 0) {
       return i;
     }
-    const lastBarragesOfTrack = barragesOfTrack[barragesOfTrack.length - 1]
+    const lastBarragesOfTrack = barragesOfTrack[barragesOfTrack.length - 1];
     if (lastBarragesOfTrack.isFree) {
       return i;
     }
@@ -61,47 +70,50 @@ function getTrackIndex(list: IBarrage[][], maxTrack: number) {
   return -1;
 }
 
-class Barrage extends React.Component<IProps, IState> {
-  state = {
-    data: this.props.data,
-    list: [this.props.data.map(item => ({...item, trackIndex: 0}))],
-  };
+function Barrage(props: IProps) {
+  // const [data, setData] = useState<Msg[] | null>(null);
+  const [list, setList] = useState(() => {
+    return [props.data.map(item => ({...item, trackIndex: 0}))];
+  });
 
-  static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
-    const {data, maxTrack} = nextProps;
-    if (data !== prevState.data) {
-      return {
-        data,
-        list: addBarrage(data, maxTrack, prevState.list),
-      };
-    }
-    return null;
-  }
-  outside = (data: IBarrage) => {
-    const {list} = this.state;
+  // if (props.data !== data) {
+  //   setData(props.data);
+  //   setList(addBarrage(props.data, props.maxTrack, list));
+  // }
+  useDerivedState(() => {
+    setList(addBarrage(props.data, props.maxTrack, list));
+  }, props.data);
+
+  // static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
+  //   const {data, maxTrack} = nextProps;
+  //   if (data !== prevState.data) {
+  //     return {
+  //       data,
+  //       list: addBarrage(data, maxTrack, prevState.list),
+  //     };
+  //   }
+  //   return null;
+  // }
+
+  const outside = (data: IBarrage) => {
     const newList = list.slice();
     if (newList.length > 0) {
       const {trackIndex} = data;
       newList[trackIndex] = newList[trackIndex].filter(
         item => item.id !== data.id,
       );
-      this.setState({
-        list: newList,
-      });
+      setList(newList);
     }
   };
-  renderItem = (item: IBarrage[]) => {
+
+  const renderItem = (item: IBarrage[]) => {
     return item.map(barrage => {
-      return <Item data={barrage} key={barrage.id} outside={this.outside} />;
+      return <Item data={barrage} key={barrage.id} outside={outside} />;
     });
   };
-  render() {
-    const {list} = this.state;
-    const {style} = this.props;
-    return (
-      <View style={[styles.container, style]}>{list.map(this.renderItem)}</View>
-    );
-  }
+
+  const {style} = props;
+  return <View style={[styles.container, style]}>{list.map(renderItem)}</View>;
 }
 
 const styles = StyleSheet.create({

@@ -6,7 +6,7 @@
  * @Description: In User Settings Edit
  * @FilePath: /listenAudio/src/pages/Listen.tsx
  */
-import React from 'react';
+import React, { useReducer } from 'react';
 import {
   View,
   Text,
@@ -21,15 +21,17 @@ import IconFont from '@/assets/iconfont';
 import {formatTime} from '@/utils/index';
 import Touchable from '@/components/Touchable';
 
-class Listen extends React.Component {
-  del = (item: IProgram) => {
+function Listen() {
+  const [ignored, forceUpdate] = useReducer(x => x + 1, []);
+  const del = (item: IProgram) => {
     realm.write(() => {
       const program = realm.objects('Program').filtered(`id='${item.id}'`);
       realm.delete(program);
-      this.setState({});
+      forceUpdate();
     });
   };
-  renderItem = ({item}: ListRenderItemInfo<IProgram>) => {
+
+  const renderItem = ({item}: ListRenderItemInfo<IProgram>) => {
     return (
       <View style={styles.item}>
         <Image source={{uri: item.thumbnailUrl}} style={styles.img} />
@@ -44,17 +46,15 @@ class Listen extends React.Component {
         <Touchable
           style={styles.delBtn}
           onPress={() => {
-            this.del(item);
+            del(item);
           }}>
           <IconFont name="icondelete" size={20} />
         </Touchable>
       </View>
     );
   };
-  render() {
-    const programs = realm.objects<IProgram>('Program');
-    return <FlatList data={programs} renderItem={this.renderItem} />;
-  }
+  const programs = realm.objects<IProgram>('Program');
+  return <FlatList data={programs} renderItem={renderItem} />;
 }
 
 const styles = StyleSheet.create({

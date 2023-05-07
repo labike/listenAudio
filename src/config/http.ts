@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-08-18 17:55:36
- * @LastEditTime: 2021-09-25 15:46:47
- * @LastEditors: your name
+ * @LastEditTime: 2022-07-24 19:15:58
+ * @LastEditors: labike ddmmy@hotmail.com
  * @Description: In User Settings Edit
  * @FilePath: /listenAudio/src/config/http.ts
  */
@@ -14,7 +14,7 @@ axios.defaults.baseURL = Config.API_URL;
 axios.interceptors.request.use(
   config => {
     config.headers = {
-      icode: 'C1A769FAD9340C57',
+      icode: 'B70B17427DC0A3FB',
     };
     return config;
   },

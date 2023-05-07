@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-17 17:47:22
- * @LastEditTime: 2021-09-25 16:17:20
+ * @LastEditTime: 2022-04-01 10:48:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /listenAudio/src/navigator/index.tsx
@@ -173,6 +173,7 @@ function Navigator() {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
+
   const stateChange = (state: NavigationState | undefined) => {
     if (typeof state !== 'undefined') {
       const routeName = getActiveRouteName(state);
