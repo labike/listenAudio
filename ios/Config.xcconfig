@@ -1,0 +1,10 @@
+//
+//  Config.xcconfig
+//  listenAudio
+//
+//  Created by Labike mmy on 2021/9/11.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+#include? "tmp.xcconfig"

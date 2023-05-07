@@ -6,10 +6,9 @@
  * @Description: In User Settings Edit
  * @FilePath: /listenAudio/src/navigators/BottomTabs.tsx
  */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import Home from '@/pages/Home';
 import Listen from '@/pages/Listen';
 import Found from '@/pages/Found';
 import Account from '@/pages/Account';
@@ -18,12 +17,16 @@ import {
   getFocusedRouteNameFromRoute,
 } from '@react-navigation/native';
 import {RootStackNavigation, RootStackParamsList} from '.';
+import IconFont from '@/assets/iconfont';
+import HomeTabs from './HomeTabs';
+import Play from '@/pages/views/Play';
 
 export type BottomTabParamList = {
-  Home: undefined;
+  HomeTabs: undefined;
   Listen: undefined;
   Found: undefined;
   Account: undefined;
+  Play: undefined;
 };
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
@@ -38,8 +41,8 @@ interface IProps {
   route: Route;
 }
 
-function getHeaderTitle(route: Route) {
-  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home';
+function getHeaderTitle(routeName: string) {
+  // const routeName = getFocusedRouteNameFromRoute(route) ?? 'HomeTabs';
   // route.state
   //   ? route.state.routes[route.state.index].name
   //   : route.params?.screen || 'Home';
@@ -58,39 +61,84 @@ function getHeaderTitle(route: Route) {
   }
 }
 
-class BottomTabs extends React.Component<IProps> {
-  componentDidUpdate() {
-    const {navigation, route} = this.props;
-    navigation.setOptions({
-      headerTitle: getHeaderTitle(route),
-    });
-  }
-  render() {
-    return (
-      <Tab.Navigator tabBarOptions={{activeTintColor: '#f86442'}}>
-        <Tab.Screen
-          options={{tabBarLabel: '首页'}}
-          name="Home"
-          component={Home}
-        />
-        <Tab.Screen
-          options={{tabBarLabel: '我听'}}
-          name="Listen"
-          component={Listen}
-        />
-        <Tab.Screen
-          options={{tabBarLabel: '发现'}}
-          name="Found"
-          component={Found}
-        />
-        <Tab.Screen
-          options={{tabBarLabel: '我的'}}
-          name="Account"
-          component={Account}
-        />
-      </Tab.Navigator>
-    );
-  }
+function BottomTabs(props: IProps) {
+  const setOptions = () => {
+    const {navigation, route} = props;
+    const routeName = getFocusedRouteNameFromRoute(route) ?? 'HomeTabs';
+    if (routeName === 'HomeTabs') {
+      navigation.setOptions({
+        headerTransparent: true,
+        headerTitle: '',
+      });
+    } else {
+      navigation.setOptions({
+        headerTransparent: false,
+        headerTitle: getHeaderTitle(routeName),
+      });
+    }
+  };
+  // componentDidMount() {
+  //   this.setOptions();
+  // }
+  // componentDidUpdate() {
+  //   this.setOptions();
+  // }
+  useEffect(() => {
+    setOptions();
+  });
+  return (
+    <Tab.Navigator tabBarOptions={{activeTintColor: '#f86442'}}>
+      <Tab.Screen
+        options={{
+          tabBarLabel: '首页',
+          tabBarIcon: ({color, size}) => (
+            <IconFont name="iconhome" size={size} color={color} />
+          ),
+        }}
+        name="HomeTabs"
+        component={HomeTabs}
+      />
+      <Tab.Screen
+        options={{
+          tabBarLabel: '我听',
+          tabBarIcon: ({color, size}) => (
+            <IconFont name="iconlisten" size={size} color={color} />
+          ),
+        }}
+        name="Listen"
+        component={Listen}
+      />
+      <Tab.Screen
+        options={({navigation}) => ({
+          tabBarButton: () => {
+            return <Play onPress={() => navigation.navigate('Detail')} />;
+          },
+        })}
+        name="Play"
+        component={Play}
+      />
+      <Tab.Screen
+        options={{
+          tabBarLabel: '发现',
+          tabBarIcon: ({color, size}) => (
+            <IconFont name="iconfaxian" size={size} color={color} />
+          ),
+        }}
+        name="Found"
+        component={Found}
+      />
+      <Tab.Screen
+        options={{
+          tabBarLabel: '我的',
+          tabBarIcon: ({color, size}) => (
+            <IconFont name="iconuser" size={size} color={color} />
+          ),
+        }}
+        name="Account"
+        component={Account}
+      />
+    </Tab.Navigator>
+  );
 }
 
 export default BottomTabs;

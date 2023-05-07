@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-08-17 15:13:10
+ * @LastEditTime: 2021-09-10 10:08:10
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /listenAudio/android/app/src/main/java/com/listenaudio/MainApplication.java
+ */
 package com.listenaudio;
 
 import android.app.Application;
@@ -10,6 +18,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import androidx.multidex.MultiDex;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -76,5 +85,11 @@ public class MainApplication extends Application implements ReactApplication {
         e.printStackTrace();
       }
     }
+  }
+  
+  @Override
+  protected void attachBaseContext(Context base) {
+    super.attachBaseContext(base);
+    MultiDex.install(this);
   }
 }
